@@ -1,5 +1,6 @@
 package com.bhatnagar.SpringFramework5GettingStarted.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.ManyToMany;
 public class Author {
 	@ManyToMany()
 	@JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
-	private Set<Book> books;
+	private Set<Book> books = new HashSet<>();
 	private String firstName;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

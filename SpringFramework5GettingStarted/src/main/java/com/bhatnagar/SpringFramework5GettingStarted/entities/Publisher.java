@@ -1,13 +1,21 @@
 package com.bhatnagar.SpringFramework5GettingStarted.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Publisher {
 	private String addressLine1;
+	@OneToMany
+	@JoinColumn(name = "publisher_id")
+	private Set<Book> books = new HashSet<>();
 	private String city;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +54,10 @@ public class Publisher {
 		return addressLine1;
 	}
 
+	public Set<Book> getBooks() {
+		return books;
+	}
+
 	public String getCity() {
 		return city;
 	}
@@ -76,6 +88,10 @@ public class Publisher {
 
 	public void setAddressLine1(String addressLine1) {
 		this.addressLine1 = addressLine1;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
 
 	public void setCity(String city) {

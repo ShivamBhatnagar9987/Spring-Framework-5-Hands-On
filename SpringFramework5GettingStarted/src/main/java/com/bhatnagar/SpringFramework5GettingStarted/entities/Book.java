@@ -1,5 +1,6 @@
 package com.bhatnagar.SpringFramework5GettingStarted.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -7,16 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
 	@ManyToMany(mappedBy = "books")
-	private Set<Author> authors;
+	private Set<Author> authors = new HashSet<>();
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String isbn;
 	private String name;
+	@ManyToOne
+	private Publisher publisher;
 
 	public Book() {
 
@@ -57,6 +61,10 @@ public class Book {
 		return name;
 	}
 
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,6 +87,10 @@ public class Book {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 	@Override
