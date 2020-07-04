@@ -26,11 +26,11 @@ public class BootstrapData implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Book b1 = new Book();
-		Book b2 = new Book();
-		Author a1 = new Author();
-		Author a2 = new Author();
-		Publisher p1 = new Publisher();
+		Book b1 = new Book("java", "1234f");
+		Book b2 = new Book("spring", "5432f");
+		Author a1 = new Author("shivam", "bhatnagar");
+		Author a2 = new Author("shriya", "bhatnagar");
+		Publisher p1 = new Publisher("shivPub", "asdf", "delhi", "delhi", "asd123");
 		publisherRepository.save(p1);
 		System.out.println("publisher count" + publisherRepository.count());
 		b1.setPublisher(p1);
